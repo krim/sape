@@ -11,53 +11,56 @@ namespace :sape do
   desc "Fetch links from server"
   task fetch: :environment do
     begin
-      config = YAML.load_file('config/trustlink.yml') 
+      config = YAML.load_file('config/sape.yml') 
     rescue Errno::ENOENT
-      fail "Config file not found (config/trustlink.yml)"
+      fail "Config file not found (config/sape.yml)"
     end
     
     key      = config['key']
     domain   = config['domain'].downcase
     encoding = config['encoding'].upcase || 'UTF-8'
-    server   = config['server']          || 'db.trustlink.ru'
+    server   = config['server']          || 'dispenser-01.sape.ru'
     
-    url = "http://#{server}/#{key}/#{domain}/#{encoding}.xml"
+    url = "http://#{server}/code.php?user=#{sape_user}&host=#{domain}&format=json"
     begin
       data = open(url)
     rescue OpenURI::HTTPError
       fail "Could not receive data"
     end
 
-    root = Nokogiri::XML(data.read).root
+    data = JSON.parse(data.read)
 
-    bot_ips = root.xpath('bot_ips/ip')
-    configs = root.xpath('config/item')
-    pages   = root.xpath('pages/page')
+    configs = {}
+    
+    bot_ips = data['__sape_ips__']
+    pages   = data['__sape_links__']
 
     if pages.any?
-      TrustlinkConfig.delete_all
-      TrustlinkLink.delete_all
+      SapeConfig.delete_all
+      SapeLink.delete_all
 
       say "Ips:"
       bot_ips.each do |ip|
-        TrustlinkConfig.create name: 'ip', value: ip.text
+        SapeConfig.create name: 'ip', value: ip.text
         say "Added #{ip.text}"
       end
 
       say "Config"
-      configs.each do |item|
-        TrustlinkConfig.create name: item['name'], value: item.text
-        say "Added #{item['name']} = #{item.text}"
+      %W{sape_delimiter sape_show_only_block ape_page_obligatory_output sape_block_tpl}.each do |item|
+        SapeConfig.create name: item, value: data["__#{item}__"]
+        say "Added #{item} = #{data["__#{item}__"]}"
       end
 
       say "Links"
-      pages.each do |page|
+      pages.each do |url, links|
         say "Page: #{page['url']}"
-        page.xpath('link').each do |item|
-          anchor = item.at_xpath('anchor').text
-          text   = item.at_xpath('text').text
-          url    = item.at_xpath('url').text
-          TrustlinkLink.create page: page['url'], anchor: anchor, text: text, url: url
+        links.each do |item|
+          item = Nokogiri::HTML(q)
+          # NEED TO PARSE!!!! + NEED TO ADD RAW LINKS(FOR NOT BLOCK LINKS)
+          # anchor = item.at_xpath('anchor').text
+          # text   = item.text
+          # url    = item.at_xpath('url').text
+          SapeLink.create page: page['url'], anchor: anchor, text: text, url: url
           say "   Added #{anchor} #{text} #{url}"
         end
       end
