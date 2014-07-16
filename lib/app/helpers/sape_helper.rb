@@ -11,9 +11,11 @@ module SapeHelper
   end
 
   def sape_links
-    SapeLink.where(page: request.original_fullpath, link_type: "simple").
+    links = SapeLink.where(page: request.original_fullpath, link_type: "simple").
              pluck(:raw_link).
              join(SapeConfig.delimiter)
+
+    SapeConfig.bot_ips.include?(request.remote_addr) ? (links + SapeConfig.check_code) : links
   rescue Exception => e
     "<!-- ERROR: #{e.message} -->".html_safe
   end
