@@ -4,18 +4,20 @@ require 'app/helpers/sape_helper'
 describe SapeHelper, :type => :helper do
   describe '#sape_links' do
 
-    subject { helper.sape_links }
+    subject { helper.sape_links_block }
 
     before do
       helper.request.path = '/'
-      allow(SapeLink).to receive(:where).with(page: '/')
+      allow(SapeLink).to receive(:where).with(page: '/', link_type: "simple")
         .and_return([
           mock_model(SapeLink,
                      page:   '/',
                      url:    'http://kremlin.ru',
                      anchor: 'See some stuff',
                      text:   'Visit Kremlin',
-                     host:   'kremlin.ru'
+                     host:   'kremlin.ru',
+                     raw_link: 'Visit Kremlin <a href="http://kremlin.ru">See some stuff</a>',
+                     link_type: "simple"
           )])
     end
 
@@ -27,12 +29,10 @@ describe SapeHelper, :type => :helper do
       before do
         helper.request.remote_addr = '127.0.0.1'
         allow(SapeConfig).to receive(:bot_ips).and_return(['127.0.0.1'])
-        allow(SapeConfig).to receive(:start_code).and_return('<!--start-->')
-        allow(SapeConfig).to receive(:stop_code).and_return('<!--end-->')
+        allow(SapeConfig).to receive(:check_code).and_return('<!--check_code-->')
       end
 
-      it { is_expected.to include('<!--start-->') }
-      it { is_expected.to include('<!--end-->') }
+      it { is_expected.to include('<!--check_code-->') }
 
     end
   end

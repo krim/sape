@@ -10,8 +10,9 @@ describe SapeLink, :type => :model do
       link = SapeLink.create(
         page: '/test',
         anchor: 'You must see',
-        text: 'very interesting thing',
         url: 'http://kremlin.ru/rss',
+        host: 'kremlin.ru',
+        raw_link: '',
         link_type: "simple"
         )
       expect(link.host).to eq('kremlin.ru')

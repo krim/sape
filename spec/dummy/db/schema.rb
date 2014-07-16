@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(version: 20140715193855) do
   create_table "sape_links", force: true do |t|
     t.string "page"
     t.string "anchor"
-    t.string "text"
     t.string "url"
+    t.string "host"
+    t.string "raw_link"
     t.string "link_type"
   end
 

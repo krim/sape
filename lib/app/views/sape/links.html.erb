@@ -1,7 +1,6 @@
-<%= start.html_safe if defined?(start) -%>
+<%= check_code.html_safe if defined?(check_code) -%>
 <% if links.any? -%>
   <ul class="ads">
     <%= render partial: 'sape/link', collection: links -%>
   </ul>
 <% end -%>
-<%= stop.html_safe if defined?(stop) -%>

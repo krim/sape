@@ -1,5 +1,8 @@
-<li>
-  <div class="link"><%= link_to link.anchor, link.url -%></div>
-  <div class="text"><%= link.text -%></div>
-  <div class="host"><%= link.host -%></div>
+<li class="block_links_icnt">
+  <div>
+    <span onclick="window.open('http://<%= link.host %>}/', '_blank'); return false;">
+    <p class="block_links_header"><%= link.anchor%></p>
+    <p class="block_links_text"><%= link.raw_link %></p>
+    <p class="block_links_url"><%= link.host %></p>
+  </div>
 </li>

@@ -12,3 +12,5 @@ module Sape
   ActionView::Base.send :include, SapeHelper
   ActionController::Base.prepend_view_path File.join(File.dirname(__FILE__), 'app/views')
 end
+
+require 'sape/fetcher.rb'

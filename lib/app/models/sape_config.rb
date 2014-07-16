@@ -4,12 +4,12 @@ class SapeConfig < ActiveRecord::Base
       where(name: 'ip').pluck(:value)
     end
 
-    def start_code
-      where(name: 'start').first.value
+    def check_code
+      where(name: 'sape_new_url').first.try(:value) || " "
     end
 
-    def stop_code
-      where(name: 'end').first.value
+    def delimiter
+      where(name: 'sape_delimiter').first.try(:value) || " "
     end
   end
 end

@@ -5,17 +5,17 @@ describe SapeConfig, :type => :model do
     SapeConfig.delete_all
   end
 
-  context '#start_code' do
-    it 'should return code' do
-      SapeConfig.create name: 'start', value: '<!--start-code-->'
-      expect(SapeConfig.start_code).to eq('<!--start-code-->')
+  context '#check_code' do
+    it 'should return check code' do
+      SapeConfig.create name: 'sape_new_url', value: '<!--check_code-->'
+      expect(SapeConfig.check_code).to eq('<!--check_code-->')
     end
   end
 
-  context '#stop_code' do
-    it 'should return code' do
-      SapeConfig.create name: 'end', value: '<!--stop-code-->'
-      expect(SapeConfig.stop_code).to eq('<!--stop-code-->')
+  context '#delimiter' do
+    it 'should return delimiter' do
+      SapeConfig.create name: 'sape_delimiter', value: ', '
+      expect(SapeConfig.delimiter).to eq(', ')
     end
   end
 

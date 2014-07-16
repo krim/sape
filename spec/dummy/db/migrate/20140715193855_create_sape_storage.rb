@@ -8,8 +8,9 @@ class CreateSapeStorage < ActiveRecord::Migration
     create_table :sape_links do |t|
       t.string :page
       t.string :anchor
-      t.string :text
       t.string :url
+      t.string :host
+      t.string :raw_link
       t.string :link_type
     end
     add_index :sape_links, [:link_type, :page]
