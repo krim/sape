@@ -20,15 +20,15 @@ describe 'sape:fetch' do
     let(:url)      { 'http://db.sape.ru/abcdefg/kremlin.ru/UTF-8.xml' }
 
     before do
-      YAML.stub(:load_file).with('config/sape.yml').and_return(config)
+      allow(YAML).to receive(:load_file).with('config/sape.yml').and_return(config)
       FakeWeb.register_uri(:any, url, body: response)
-      SapeConfig.any_instance.stub(:delete_all).and_return(:true)
-      SapeLink.any_instance.stub(:delete_all).and_return(:true)
+      allow_any_instance_of(SapeConfig).to receive(:delete_all).and_return(:true)
+      allow_any_instance_of(SapeLink).to receive(:delete_all).and_return(:true)
     end
 
     it 'should fetch xml file' do
       subject.invoke
-      FakeWeb.should have_requested(:get, url)
+      expect(FakeWeb).to have_requested(:get, url)
     end
 
     it 'should fails if could not get file' do
@@ -39,8 +39,8 @@ describe 'sape:fetch' do
 
     it 'should add data' do
       subject.invoke
-      SapeConfig.count.should eq 7
-      SapeLink.count.should   eq 1
+      expect(SapeConfig.count).to eq 7
+      expect(SapeLink.count).to   eq 1
     end
   end
 

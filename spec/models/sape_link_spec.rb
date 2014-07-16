@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SapeLink do
+describe SapeLink, :type => :model do
   before do
     SapeLink.delete_all
   end
@@ -14,7 +14,7 @@ describe SapeLink do
         url: 'http://kremlin.ru/rss',
         link_type: "simple"
         )
-      link.host.should eq('kremlin.ru')
+      expect(link.host).to eq('kremlin.ru')
     end
   end
 end

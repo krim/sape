@@ -1,14 +1,14 @@
 require 'spec_helper'
 require 'app/helpers/sape_helper'
 
-describe SapeHelper do
+describe SapeHelper, :type => :helper do
   describe '#sape_links' do
 
     subject { helper.sape_links }
 
     before do
       helper.request.path = '/'
-      SapeLink.stub(:where).with(page: '/')
+      allow(SapeLink).to receive(:where).with(page: '/')
         .and_return([
           mock_model(SapeLink,
                      page:   '/',
@@ -19,20 +19,20 @@ describe SapeHelper do
           )])
     end
 
-    it { should include('kremlin.ru') }
-    it { should include('See some stuff') }
-    it { should include('Visit Kremlin') }
+    it { is_expected.to include('kremlin.ru') }
+    it { is_expected.to include('See some stuff') }
+    it { is_expected.to include('Visit Kremlin') }
 
     describe 'recognized as bot' do
       before do
         helper.request.remote_addr = '127.0.0.1'
-        SapeConfig.stub(:bot_ips).and_return(['127.0.0.1'])
-        SapeConfig.stub(:start_code).and_return('<!--start-->')
-        SapeConfig.stub(:stop_code).and_return('<!--end-->')
+        allow(SapeConfig).to receive(:bot_ips).and_return(['127.0.0.1'])
+        allow(SapeConfig).to receive(:start_code).and_return('<!--start-->')
+        allow(SapeConfig).to receive(:stop_code).and_return('<!--end-->')
       end
 
-      it { should include('<!--start-->') }
-      it { should include('<!--end-->') }
+      it { is_expected.to include('<!--start-->') }
+      it { is_expected.to include('<!--end-->') }
 
     end
   end
