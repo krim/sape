@@ -17,7 +17,7 @@ describe 'sape:fetch' do
   describe 'With config file' do
     let(:config)   { YAML.load(File.open(Rails.root.join('spec', 'fixtures', 'sape.yml'))) }
     let(:response) { File.open(Rails.root.join('spec', 'fixtures', 'response.json')) }
-    let(:url)      { 'http://db.sape.ru/abcdefg/kremlin.ru/UTF-8.xml' }
+    let(:url)      { 'http://dispenser-01.sape.ru/code.php?user=082b3e62a664f746cc959643a7864d43&host=ballroom.ru&charset=utf-8' }
 
     before do
       allow(YAML).to receive(:load_file).with('config/sape.yml').and_return(config)

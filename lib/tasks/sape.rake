@@ -16,12 +16,14 @@ namespace :sape do
       fail "Config file not found (config/sape.yml)"
     end
     
-    key      = config['key']
-    domain   = config['domain'].downcase
-    encoding = config['encoding'].upcase || 'UTF-8'
-    server   = config['server']          || 'dispenser-01.sape.ru'
+    sape_user = config['sape_user']
+    host      = config['host'].downcase
+    charset   = config['charset'].upcase  || 'UTF-8'
+    server    = config['server']          || 'dispenser-01.sape.ru'
     
-    url = "http://#{server}/code.php?user=#{sape_user}&host=#{domain}&format=json"
+
+    url = "http://#{server}/code.php?user=#{sape_user}&host=#{host}&format=json"
+
     begin
       data = open(url)
     rescue OpenURI::HTTPError
