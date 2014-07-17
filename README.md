@@ -45,7 +45,7 @@ Simply put helper call in desired place. Like this:
 Run it by cron or use whenever gem or something other way you like.
 
 #### Customizing templates (optional)
-* `rails g sape:views`
+* run `rails g sape:views` for generate views
 * run `rails g sape:install` to add sape.css to yours app/assets/stylesheets for block links
 
 
