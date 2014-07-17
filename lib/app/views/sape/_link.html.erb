@@ -1,8 +1,8 @@
 <li class="block_links_icnt">
   <div>
-    <span onclick="window.open('http://<%= link.host %>}/', '_blank'); return false;">
-    <p class="block_links_header"><%= link.anchor%></p>
-    <p class="block_links_text"><%= link.raw_link %></p>
+    <span onclick="window.open('http://<%= link.host %>/', '_blank'); return false;">
+    <p class="block_links_header"><%= link.anchor.html_safe %></p>
+    <p class="block_links_text"><%= link.raw_link.html_safe %></p>
     <p class="block_links_url"><%= link.host %></p>
   </div>
 </li>

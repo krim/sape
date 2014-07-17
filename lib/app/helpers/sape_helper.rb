@@ -15,7 +15,7 @@ module SapeHelper
              pluck(:raw_link).
              join(SapeConfig.delimiter)
 
-    SapeConfig.bot_ips.include?(request.remote_addr) ? (links + SapeConfig.check_code) : links
+    (SapeConfig.bot_ips.include?(request.remote_addr) ? (links + SapeConfig.check_code) : links).html_safe
   rescue Exception => e
     "<!-- ERROR: #{e.message} -->".html_safe
   end
@@ -29,7 +29,7 @@ module SapeHelper
       "<sape_index>" + text + "</sape_index>" + SapeConfig.check_code
     else
       text
-    end
+    end.html_safe
   rescue Exception => e
     "<!-- ERROR: #{e.message} -->".html_safe
   end
