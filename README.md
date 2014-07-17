@@ -24,15 +24,19 @@ gem 'sape'
 #### Generating config
 * create config/sape.yml
 ```yml
-key: _YOUR_SAPE_HASH_
-domain: example.com
-encoding: UTF-8
+sape_user: _YOUR_SAPE_HASH_
+host: example.com
+charset: UTF-8
 ```
 
 #### Inserting links
 Simply put helper call in desired place. Like this:
 ```ruby
+<% # SIMPLE LINKS %>
 <%= sape_links -%>
+
+<% # BLOCK LINKS %>
+<%= sape_links_block -%>
 ```
 
 #### Fetching links
@@ -48,7 +52,6 @@ Templates will be copied to views/sape folder.
 ### Notes
 * In _link.html.erb first and last string inserting sape code recognized by sape bots. It should not be removed. Also important to levae url untouched.
 * By default no style included. You can use styles extracted from sape's template. Just replace class to 'ads' used by default or use your own.
-* Multi-domain feature currently not supported. Ask if you need this feature.
 
 For more information please follow http://www.sape.ru/
 
