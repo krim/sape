@@ -46,7 +46,8 @@ Run it by cron or use whenever gem or something other way you like.
 
 #### Customizing templates (optional)
 * `rails g sape:views`
-* add `*= require sape` to application.css for block links
+* run `rails g sape:install` to add sape.css to yours app/assets/stylesheets for block links
+
 
 Templates will be copied to views/sape folder.
 
