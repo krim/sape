@@ -6,7 +6,7 @@
 ###Rewritten from scratch
 
 ### Changes
-* parsing xml file instead of php serialized string
+* parsing json file instead of php serialized string
 * storing in database instead of text file
 * requesting by rake task instead of checking on every page load
 * customizable rails friendly erb templates
