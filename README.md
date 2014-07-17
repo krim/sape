@@ -37,6 +37,9 @@ Simply put helper call in desired place. Like this:
 
 <% # BLOCK LINKS %>
 <%= sape_links_block -%>
+
+<% # CONTEXT LINKS %>
+<%= sape_context_links text -%>
 ```
 
 #### Fetching links
