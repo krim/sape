@@ -1,4 +1,4 @@
-##Sape module for Ruby On Rails
+##Sape gem for Ruby On Rails
 
 [![Gem Version](https://badge.fury.io/rb/sape.png)](http://badge.fury.io/rb/sape)
 [![Build Status](https://travis-ci.org/iRet/sape.png?branch=master)](https://travis-ci.org/iRet/sape)
