@@ -1,7 +1,7 @@
 ##Sape gem for Ruby On Rails
 
 [![Gem Version](https://badge.fury.io/rb/sape.png)](http://badge.fury.io/rb/sape)
-[![Build Status](https://travis-ci.org/krim/sape.png?branch=master)](https://travis-ci.org/iRet/sape)
+[![Build Status](https://travis-ci.org/krim/sape.svg?branch=master)](https://travis-ci.org/iRet/sape)
 
 ###Rewritten from scratch
 
