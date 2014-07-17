@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - 2.1.1
+env:
+  - DB=sqlite
+script: 
+  - cd spec/dummy
+  - RAILS_ENV=test bundle exec rake db:create --trace
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec spec
