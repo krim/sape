@@ -21,8 +21,8 @@ namespace :sape do
     end
 
     Fetcher.fetch_config(config_data, bot_ips)    if pages.any?
-    #Fetcher.fetch_pages(pages, 'simple')          if pages.any?
-    #Fetcher.fetch_pages(pages_context, 'context') if pages_context.any?
+    Fetcher.fetch_pages(pages, 'simple')          if pages.any?
+    Fetcher.fetch_pages(pages_context, 'context') if pages_context.any?
 
   end
 end
