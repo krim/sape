@@ -46,12 +46,12 @@ Run it by cron or use whenever gem or something other way you like.
 
 #### Customizing templates (optional)
 * `rails g sape:views`
+* add `*= require sape` to application.css for block links
 
 Templates will be copied to views/sape folder.
 
 ### Notes
 * In _link.html.erb first and last string inserting sape code recognized by sape bots. It should not be removed. Also important to levae url untouched.
-* By default no style included. You can use styles extracted from sape's template. Just replace class to 'ads' used by default or use your own.
 
 For more information please follow http://www.sape.ru/
 
