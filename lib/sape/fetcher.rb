@@ -27,8 +27,8 @@ class Fetcher
       JSON.parse(data.read)
     end
 
-    def fetch_pages(pages, link_type)
-      SapeLink.delete_all
+    def fetch_pages(pages, link_type, delete_old = false)
+      SapeLink.delete_all if delete_old
       say "Links:: #{link_type}"
       pages.each do |page_url, links|
         say "Page: #{page_url}"
