@@ -25,7 +25,7 @@ module SapeHelper
   def sape_context_links(text)
     request.original_fullpath.chomp!("/") if request.original_fullpath.last == "/" && request.original_fullpath != '/'
     SapeLink.where(page: request.original_fullpath, link_type: "context").each do |link|
-      text.gsub!(link.anchor, link.raw_link)
+      text.sub!(link.anchor, link.raw_link)
     end
 
     if SapeConfig.bot_ips.include?(request.remote_addr)
