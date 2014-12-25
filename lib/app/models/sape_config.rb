@@ -1,7 +1,7 @@
 class SapeConfig < ActiveRecord::Base
   class << self
     def bot_ips(site_host)
-      where(name: 'ip', site_host: site_host.host).pluck(:value)
+      where(name: 'ip', site_host: site_host).pluck(:value)
     end
 
     def check_code(site_host)
