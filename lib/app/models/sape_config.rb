@@ -1,15 +1,15 @@
 class SapeConfig < ActiveRecord::Base
   class << self
-    def bot_ips
-      where(name: 'ip', site_host: request.host).pluck(:value)
+    def bot_ips(site_host)
+      where(name: 'ip', site_host: site_host.host).pluck(:value)
     end
 
-    def check_code
-      where(name: 'sape_new_url', site_host: request.host).first.try(:value) || " "
+    def check_code(site_host)
+      where(name: 'sape_new_url', site_host: site_host).first.try(:value) || " "
     end
 
-    def delimiter
-      where(name: 'sape_delimiter', site_host: request.host).first.try(:value) || " "
+    def delimiter(site_host)
+      where(name: 'sape_delimiter', site_host: site_host).first.try(:value) || " "
     end
   end
 end
