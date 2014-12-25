@@ -35,13 +35,13 @@ charset: UTF-8
 #### Inserting links
 Simply put helper call in desired place. Like this:
 ```ruby
-<% # SIMPLE LINKS %>
+<% # SIMPLE LINKS, custom parameter 'site_host', default: request.host %>
 <%= sape_links -%>
 
-<% # BLOCK LINKS %>
+<% # BLOCK LINKS, custom parameter 'site_host', default: request.host %>
 <%= sape_links_block -%>
 
-<% # CONTEXT LINKS %>
+<% # CONTEXT LINKS, custom parameter 'site_host', default: request.host %>
 <%= sape_context_links text -%>
 ```
 
