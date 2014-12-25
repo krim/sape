@@ -11,22 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715193855) do
+ActiveRecord::Schema.define(version: 20141225123124) do
 
   create_table "sape_configs", force: true do |t|
+    t.string "site_host"
     t.string "name"
-    t.string "value"
+    t.text   "value",     limit: 500
   end
 
   create_table "sape_links", force: true do |t|
+    t.string "site_host"
     t.string "page"
     t.string "anchor"
     t.string "url"
     t.string "host"
-    t.string "raw_link"
+    t.text   "raw_link",  limit: 500
     t.string "link_type"
   end
 
-  add_index "sape_links", ["link_type", "page"], name: "index_sape_links_on_link_type_and_page"
+  add_index "sape_links", ["link_type", "page", "site_host"], name: "index_sape_links_on_link_type_and_page_and_site_host"
 
 end

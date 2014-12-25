@@ -1,7 +1,7 @@
 module SapeHelper
   def sape_links_block
     request.original_fullpath.chomp!("/") if request.original_fullpath.last == "/" && request.original_fullpath != '/'
-    options = { links: SapeLink.where(page: request.original_fullpath, link_type: "simple") }
+    options = { links: SapeLink.where(page: request.original_fullpath, link_type: "simple", site_host: request.host) }
     if SapeConfig.bot_ips.include?(request.remote_addr)
       options.merge!(check_code: SapeConfig.check_code)
     end
@@ -13,7 +13,7 @@ module SapeHelper
 
   def sape_links
     request.original_fullpath.chomp!("/") if request.original_fullpath.last == "/" && request.original_fullpath != '/'
-    links = SapeLink.where(page: request.original_fullpath, link_type: "simple").
+    links = SapeLink.where(page: request.original_fullpath, link_type: "simple", site_host: request.host).
              pluck(:raw_link).
              join(SapeConfig.delimiter)
 
@@ -24,7 +24,7 @@ module SapeHelper
 
   def sape_context_links(text)
     request.original_fullpath.chomp!("/") if request.original_fullpath.last == "/" && request.original_fullpath != '/'
-    SapeLink.where(page: request.original_fullpath, link_type: "context").each do |link|
+    SapeLink.where(page: request.original_fullpath, link_type: "context", site_host: request.host).each do |link|
       text.sub!(link.anchor, link.raw_link)
     end
 

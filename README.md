@@ -25,7 +25,10 @@ gem 'sape'
 * create config/sape.yml
 ```yml
 sape_user: _YOUR_SAPE_HASH_
-host: example.com
+host:
+  - example.com
+  - subdomain1.example.com
+  - subdomain1.example.com
 charset: UTF-8
 ```
 
