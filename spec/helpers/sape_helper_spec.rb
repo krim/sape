@@ -8,7 +8,8 @@ describe SapeHelper, :type => :helper do
 
     before do
       helper.request.path = '/'
-      allow(SapeLink).to receive(:where).with(page: '/', link_type: "simple")
+      helper.request.host = 'test.host'
+      allow(SapeLink).to receive(:where).with(page: '/', link_type: "simple", site_host: "test.host")
         .and_return([
           mock_model(SapeLink,
                      page:   '/',
@@ -17,7 +18,8 @@ describe SapeHelper, :type => :helper do
                      text:   'Visit Kremlin',
                      host:   'kremlin.ru',
                      raw_link: 'Visit Kremlin <a href="http://kremlin.ru">See some stuff</a>',
-                     link_type: "simple"
+                     link_type: "simple",
+                     site_host: "test.host"
           )])
     end
 

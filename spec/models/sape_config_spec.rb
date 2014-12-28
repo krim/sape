@@ -7,22 +7,22 @@ describe SapeConfig, :type => :model do
 
   context '#check_code' do
     it 'should return check code' do
-      SapeConfig.create name: 'sape_new_url', value: '<!--check_code-->'
-      expect(SapeConfig.check_code).to eq('<!--check_code-->')
+      SapeConfig.create name: 'sape_new_url', value: '<!--check_code-->', site_host: 'test.host'
+      expect(SapeConfig.check_code('test.host')).to eq('<!--check_code-->')
     end
   end
 
   context '#delimiter' do
     it 'should return delimiter' do
-      SapeConfig.create name: 'sape_delimiter', value: ', '
-      expect(SapeConfig.delimiter).to eq(', ')
+      SapeConfig.create name: 'sape_delimiter', value: ', ', site_host: 'test.host'
+      expect(SapeConfig.delimiter('test.host')).to eq(', ')
     end
   end
 
   context '#bot_ips' do
     it 'should return bot ips array' do
-      SapeConfig.create name: 'ip', value: '127.0.0.1'
-      expect(SapeConfig.bot_ips).to eq(['127.0.0.1'])
+      SapeConfig.create name: 'ip', value: '127.0.0.1', site_host: 'test.host'
+      expect(SapeConfig.bot_ips('test.host')).to eq(['127.0.0.1'])
     end
   end
 end
