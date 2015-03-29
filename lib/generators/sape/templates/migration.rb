@@ -16,5 +16,7 @@ class CreateSapeStorage < ActiveRecord::Migration
       t.string :link_type
     end
     add_index :sape_links, [:link_type, :page, :site_host]
+    add_index :sape_configs, [:name, :site_host]
+    add_index :sape_configs, :site_host
   end
 end
