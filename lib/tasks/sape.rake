@@ -16,7 +16,7 @@ namespace :sape do
 
       pages         = data['__sape_links__']
       pages_context = data_context['__sape_links__']
-      bot_ips       = data['__sape_ips__']
+      bot_ips       = data['__sape_ips__'] || []
 
       %W{sape_delimiter sape_show_only_block sape_page_obligatory_output sape_new_url}.each do |item|
         config_data[item] = data["__#{item}__"]
