@@ -40,7 +40,7 @@ class Fetcher
           url_host  = Domainatrix.parse(url).host
           SapeLink.create site_host: site_host, page: page_url, anchor: anchor, host: url_host, raw_link: link, url: url, link_type: link_type
           say "   Added #{site_host} :: #{anchor} #{url_host} #{url}"
-        end
+        end unless links.nil?
       end
     end
 
