@@ -1,0 +1,6 @@
+li.block_links_icnt
+  div
+    span onclick="window.open('http://#{link.host}/', '_blank'); return false;"
+      p.block_links_header= link.anchor.html_safe
+      p.block_links_text= link.raw_link.html_safe
+      p.block_links_url= link.host
