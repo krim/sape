@@ -9,7 +9,7 @@
 * parsing json file instead of php serialized string
 * storing in database instead of text file
 * requesting by rake task instead of checking on every page load
-* customizable rails friendly erb templates
+* customizable rails friendly erb/haml/slim templates
 
 ### Installation
 Include the gem in your Gemfile:
@@ -58,7 +58,7 @@ Run it by cron or use whenever gem or something other way you like.
 Templates will be copied to views/sape folder.
 
 ### Notes
-* In _link.html.erb first and last string inserting sape code recognized by sape bots. It should not be removed. Also important to levae url untouched.
+* In _link.html.* first and last string inserting sape code recognized by sape bots. It should not be removed. Also important to leave url untouched.
 
 For more information please follow http://www.sape.ru/
 
