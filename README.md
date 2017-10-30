@@ -1,9 +1,9 @@
-##Sape gem for Ruby On Rails
+## Sape gem for Ruby On Rails
 
 [![Gem Version](https://badge.fury.io/rb/sape.png)](http://badge.fury.io/rb/sape)
 [![Build Status](https://travis-ci.org/krim/sape.svg?branch=master)](https://travis-ci.org/krim/sape)
 
-###Rewritten from scratch
+### Rewritten from scratch
 
 ### Changes
 * parsing json file instead of php serialized string
@@ -51,7 +51,7 @@ Simply put helper call in desired place. Like this:
 Run it by cron or use whenever gem or something other way you like.
 
 #### Customizing templates (optional)
-* run `rails g sape:views` for generate views
+* run `rails g sape:views` for generate views(you can choose erb/haml/slim)
 * run `rails g sape:install` to add sape.css to yours app/assets/stylesheets for block links
 
 
